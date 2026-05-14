@@ -1,0 +1,1436 @@
+:root[data-theme="dark"] {
+    --bg-color: #0d0d0d;
+    --surface: rgba(30, 30, 30, 0.6);
+    --primary: #ff80ab;
+    --primary-glow: rgba(255, 128, 171, 0.4);
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --glass-border: rgba(255, 128, 171, 0.2);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --nav-bg: rgba(20, 20, 20, 0.9);
+}
+
+:root[data-theme="light"] {
+    --bg-color: #ffe4e8;
+    --surface: rgba(255, 255, 255, 0.7);
+    --primary: #d81b60;
+    --primary-glow: rgba(216, 27, 96, 0.3);
+    --text-main: #333333;
+    --text-muted: #666666;
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --shadow: 0 10px 30px rgba(216, 27, 96, 0.1);
+    --nav-bg: rgba(255, 255, 255, 0.95);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden;
+    transition: background 0.5s ease;
+}
+
+#particles-bg,
+.app-container,
+.top-bar,
+.bottom-nav {
+    max-width: 900px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+#particles-bg {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+.heart-particle {
+    position: absolute;
+    bottom: -20px;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: floatUp 5s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0.5) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-100vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.top-bar {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+}
+
+.logo {
+    font-family: "Dancing Script", cursive;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+#theme-toggle {
+    background: var(--surface);
+    border: 1px solid var(--glass-border);
+    color: var(--primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-container {
+    position: relative;
+    z-index: 1;
+    height: calc(100vh - 140px);
+    overflow-y: auto;
+    padding: 0 20px 100px 20px;
+}
+
+.tab-content {
+    display: none;
+    width: 100%;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Default mobile 1 kolom */
+    gap: 25px;
+    align-items: stretch;
+    /* Paksa tinggi card sejajar dalam satu baris */
+}
+
+@media (min-width: 768px) {
+    .grid-layout {
+        grid-template-columns: repeat(2, 1fr);
+        /* Desktop 2 kolom presisi */
+    }
+
+    .top-bar,
+    .app-container {
+        max-width: 1200px;
+        /* Kita lebarin jadi 1200px biar mantap */
+    }
+}
+
+.header-text {
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+.header-text h1,
+.header-text h2 {
+    font-family: "Dancing Script", cursive;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 5px;
+    text-shadow: 0 2px 10px var(--primary-glow);
+}
+
+.header-text p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.card {
+    background: var(--surface);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Wajib biar tinggi kotak sama */
+    position: relative;
+    box-sizing: border-box;
+}
+
+.bouncy-hover:active {
+    transform: scale(0.96);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    border-radius: 16px;
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px var(--primary-glow);
+    transition: 0.2s;
+    margin-top: auto;
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 15px;
+}
+
+.btn-outline:active {
+    background: var(--primary);
+    color: #fff;
+}
+
+.p3k-icon {
+    position: absolute;
+    font-size: 5rem;
+    right: -15px;
+    top: -15px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.card h3 {
+    color: var(--text-main);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+
+/* Animasi Quote (Elegan) */
+
+.quote-container {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fade-text {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(10px);
+    font-style: italic;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.fade-text.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Mood Tracker */
+
+.mood-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.mood-btns button {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.mood-btns button:active {
+    background: var(--primary);
+    transform: scale(0.95);
+}
+
+
+/* Music Player */
+
+.music-player {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 15px;
+    gap: 15px;
+}
+
+.spin-disk {
+    font-size: 2.5rem;
+    color: var(--primary);
+    animation: spin 4s linear infinite;
+    animation-play-state: paused;
+}
+
+.spin-disk.playing {
+    animation-play-state: running;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.music-info {
+    flex: 1;
+}
+
+.music-info h4 {
+    font-size: 1rem;
+    color: var(--text-main);
+    margin-bottom: 2px;
+}
+
+.music-info p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.play-btn {
+    background: var(--primary);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ORB BREATHE */
+
+.interactive-breathe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Centering Vertikal */
+    align-items: center;
+    /* Centering Horizontal */
+    text-align: center;
+}
+
+.clean-orb-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+    margin-bottom: 25px;
+}
+
+.orb-aura {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: var(--primary);
+    border-radius: 50%;
+    filter: blur(25px);
+    opacity: 0.5;
+    transition: transform 0.1s linear, opacity 0.1s linear;
+    pointer-events: none;
+}
+
+.orb-core {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #ffb3c6 0%, var(--primary) 100%);
+    border-radius: 50%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s linear;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.breathe-text-area {
+    text-align: center;
+}
+
+
+/* BUBBLE WRAP REALISTIS */
+
+.bubble-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.bubble-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+}
+
+.bubble {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Efek pantulan cahaya plastik bening */
+    box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.3), inset 3px 3px 8px rgba(255, 255, 255, 0.6), 2px 2px 5px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bubble:active {
+    transform: scale(0.85);
+}
+
+.bubble.popped {
+    /* Pas meletus, kelihatan kempes (gak ilang total) */
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+.burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.burst.active {
+    animation: popBurst 0.3s ease-out;
+}
+
+@keyframes popBurst {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(5);
+        opacity: 0;
+    }
+}
+
+
+/* Animasi pas tombol reset dipencet */
+
+.bubble.reset-anim {
+    animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* --- DOODLE CANVAS STYLING --- */
+
+.canvas-wrapper {
+    width: 100%;
+    height: 200px;
+    /* Tinggi canvas */
+    background: #ffffff;
+    /* Background canvas putih biar jelas gambarnya */
+    border-radius: 15px;
+    border: 2px solid var(--glass-border);
+    overflow: hidden;
+    margin: 15px 0;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#doodle-canvas {
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    touch-action: none;
+    /* Penting buat mobile biar gak scrolling pas gambar */
+}
+
+
+/* Toolbar Modern */
+
+.doodle-toolbar {
+    display: flex;
+    flex-direction: column;
+    /* Kita bikin 2 baris biar lega */
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.tool-group {
+    display: flex;
+    gap: 8px;
+    /* Kecilin gap biar muat tombol upload */
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Biar di mobile gak kepotong kalau rame */
+}
+
+.tool-btn {
+    padding: 8px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    background: var(--surface);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tool-btn:hover {
+    background: var(--primary-glow);
+}
+
+.tool-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+
+/* Color Scroll System */
+
+.color-scroll-container {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.color-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Chrome/Safari */
+
+.color-palette-v2 .color-btn {
+    width: 30px !important;
+    /* Kunci ukuran horizontal */
+    height: 30px !important;
+    /* Kunci ukuran vertikal */
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    /* Biar gak ciut di scroll container */
+}
+
+.color-palette-v2 .color-btn.active {
+    border-color: var(--text-main);
+    transform: scale(1.15);
+}
+
+
+/* Tombol Utama */
+
+.doodle-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    /* Sejajarin sama bawah card */
+}
+
+.doodle-actions button {
+    flex: 1;
+    /* Lebar tombol dibagi rata */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* GAMES CARD */
+
+.game-card {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.game-icon {
+    font-size: 2.5rem;
+    background: var(--primary-glow);
+    padding: 15px;
+    border-radius: 16px;
+    margin-right: 5px;
+}
+
+.game-info {
+    flex: 1;
+}
+
+
+/* MODAL UI (Games) */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    position: relative;
+    animation: popIn 0.3s;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: var(--primary);
+}
+
+
+/* Game UI Khusus */
+
+.quiz-opt {
+    width: 100%;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.quiz-opt:hover {
+    background: var(--primary-glow);
+}
+
+/* =========================================
+   UI BARU MEMORY MATCH (3D FLIP)
+   ========================================= */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    perspective: 1000px;
+    /* Biar efek 3D-nya berasa */
+    margin-bottom: 10px;
+}
+
+.mem-card {
+    aspect-ratio: 1;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+.mem-card-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Kalo di-klik atau bener, puter 180 derajat */
+.mem-card.flipped .mem-card-inner,
+.mem-card.matched .mem-card-inner {
+    transform: rotateY(180deg);
+}
+
+.mem-card-front,
+.mem-card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+/* Bagian Depan (Tanda Tanya) */
+.mem-card-front {
+    background: var(--primary-glow);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+/* Bagian Belakang (Emoji) */
+.mem-card-back {
+    background: var(--surface);
+    border: 2px solid var(--glass-border);
+    font-size: 2rem;
+    transform: rotateY(180deg);
+}
+
+/* Animasi kalau jawabannya bener (Ng-Glow Ijo, bukan ngilang) */
+.mem-card.matched .mem-card-inner {
+    animation: cardMatch 0.5s ease forwards;
+}
+
+@keyframes cardMatch {
+    0% {
+        transform: rotateY(180deg) scale(1);
+    }
+
+    50% {
+        transform: rotateY(180deg) scale(1.1);
+        box-shadow: 0 0 15px #2ecc71;
+    }
+
+    100% {
+        transform: rotateY(180deg) scale(0.95);
+        opacity: 0.8;
+        border-color: #2ecc71;
+    }
+}
+
+
+/* --- GAMES UI ENHANCEMENT --- */
+
+.tictac-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tictac-cell {
+    aspect-ratio: 1;
+    background: var(--primary-glow);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+
+/* Catch Heart Game */
+
+#catch-game-area {
+    width: 100%;
+    height: 300px;
+    background: rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+#basket {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    transition: 0.1s;
+}
+
+.falling-heart {
+    position: absolute;
+    font-size: 1.5rem;
+    top: -30px;
+}
+
+
+/* --- PUZZLE SURAT CINTA --- */
+.puzzle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    /* Kecilin gap biar foto keliatan nyambung */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 15px;
+    width: 280px;
+    /* Lebarin dikit biar mantap */
+    margin: 0 auto;
+}
+
+.puzzle-tile {
+    aspect-ratio: 1;
+    border-radius: 4px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    transition: 0.2s all ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.puzzle-tile:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+.puzzle-tile.empty {
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+/* --- BINARY DECRYPT --- */
+#binary-terminal {
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
+    position: relative;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+/* Efek kursor ngetik di terminal */
+#binary-terminal::after {
+    content: "_";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Playlist Styling */
+
+.music-player-main {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 15px;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.playlist-container {
+    max-height: 150px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 5px;
+}
+
+
+/* Custom Scrollbar Playlist */
+
+.playlist-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.playlist-item {
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.playlist-item:hover {
+    background: rgba(255, 128, 171, 0.1);
+    color: var(--primary);
+}
+
+.playlist-item.active {
+    background: var(--primary-glow);
+    color: var(--primary);
+    border: 1px solid var(--glass-border);
+    font-weight: 600;
+}
+
+
+/* Progress Bar Music */
+
+.progress-container-music {
+    margin: 10px 0;
+    width: 100%;
+}
+
+#music-progress {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+#music-progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+
+/* Lyrics Styling */
+
+.lyrics-container {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    height: 180px;
+    /* Tinggi tetap biar bisa scroll */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-behavior: smooth;
+    mask-image: linear-gradient(transparent, black 20%, black 80%, transparent);
+    /* Efek fade atas bawah */
+}
+
+.lyrics-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Sembunyiin scrollbar biar clean */
+
+.lyric-line {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.3);
+    /* Lirik yang belum lewat warnanya pudar */
+    margin: 10px 0;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 100%;
+}
+
+.lyric-line.active {
+    color: var(--primary);
+    /* Lirik aktif warnanya pink menyala */
+    transform: scale(1.1);
+    text-shadow: 0 0 15px var(--primary-glow);
+}
+
+
+/* Worry Burner */
+
+#worry-input {
+    width: 100%;
+    flex-grow: 1;
+    /* Ngambil sisa ruang biar sejajar sama sebelahnya */
+    min-height: 120px;
+    /* Jaga biar gak terlalu ciut */
+    background: rgba(0, 0, 0, 0.25);
+    border: 2px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 15px;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    resize: none;
+    outline: none;
+    margin: 15px 0;
+    transition: 0.3s;
+}
+
+#worry-input:focus {
+    border-color: var(--primary);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+@keyframes burnEffect {
+    0% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1) contrast(1);
+        box-shadow: none;
+    }
+
+    30% {
+        transform: scale(1.02) translateY(-5px);
+        background: rgba(231, 76, 60, 0.2);
+        border-color: #e67e22;
+        color: #e67e22;
+    }
+
+    60% {
+        transform: scale(1.05) rotate(1deg);
+        filter: brightness(1.5) sepia(1) hue-rotate(-50deg);
+        box-shadow: 0 0 20px #e67e22;
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(0.5) translateY(-50px) rotate(-2deg);
+        opacity: 0;
+        filter: blur(20px) brightness(2);
+    }
+}
+
+.burn-animation {
+    animation: burnEffect 1.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards !important;
+    pointer-events: none;
+    /* Biar gak bisa diketik pas lagi kebakar */
+}
+
+
+/* Compliment Rain Bubble */
+
+.compliment-bubble {
+    position: fixed;
+    top: -150px;
+    z-index: 9999;
+    padding: 12px 20px;
+    background: var(--primary);
+    color: white;
+    border-radius: 25px;
+    font-weight: 600;
+    pointer-events: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    /* Biar teks lirik gak kepotong ke bawah */
+    /* Tambahin ini biar posisi 'left' dihitung dari tengah bubble */
+    transform: translateX(-50%);
+    animation: rainDownFull 7s linear forwards;
+}
+
+@keyframes rainDownFull {
+    0% {
+        /* Wajib ada translateX(-50%) di tiap step animasi */
+        transform: translate(-50%, 0) rotate(-10deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        /* Tetep konsisten pake translate -50% */
+        transform: translate(-50%, calc(100vh + 300px)) rotate(10deg);
+        opacity: 0;
+    }
+}
+
+
+/* --- SCRATCH CARD STYLING --- */
+
+.scratch-container {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.scratch-message {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-align: center;
+    padding: 20px;
+    z-index: 1;
+    user-select: none;
+}
+
+#scratch-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    cursor: crosshair;
+    touch-action: none;
+    /* Penting buat mobile biar gak kegulung layarnya */
+}
+
+
+/* --- FIX DOODLE FULLSCREEN MODE --- */
+
+.doodle-card.maximized {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    /* Pake dvh biar ngikutin ukuran asli layar HP (gak kepotong address bar) */
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 10000 !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 20px 20px 40px 20px !important;
+    /* Jarak aman atas bawah */
+    background: var(--bg-color) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    /* Kalau layar kekecilan, bisa discroll dikit */
+}
+
+
+/* Trik Flexbox biar canvas melar pas, tapi gak ngedorong tombol ke luar layar */
+
+.doodle-card.maximized .canvas-wrapper {
+    flex-grow: 1 !important;
+    height: 0 !important;
+    /* Kunci maut flexbox biar gak overflow */
+    min-height: 200px !important;
+    margin-bottom: 15px !important;
+}
+
+.doodle-card.maximized .doodle-actions {
+    margin-top: auto !important;
+    /* Paksa tombol tetep nempel di bawah */
+    padding-bottom: 10px !important;
+    /* Jarak aman dari tepi bawah monitor */
+}
+
+/* =========================================
+   NAVBAR & BURGER MENU SYSTEM
+   ========================================= */
+/* Lebarin app-container karena menu bawah udah ilang */
+.app-container {
+    height: calc(100vh - 80px) !important;
+    padding-bottom: 30px !important;
+}
+
+.top-bar {
+    gap: 15px;
+}
+
+.burger-icon {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--primary);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.nav-menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item-top a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-item-top a:hover {
+    color: var(--primary);
+}
+
+/* --- DROPDOWN DESKTOP --- */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100% !important;
+    /* Ubah dari 150% jadi 100% biar nempel sama navbar */
+    margin-top: 15px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    list-style: none;
+    padding: 10px 0;
+    z-index: 100000 !important;
+}
+
+.dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-content li a {
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.dropdown-content li a:hover {
+    background: var(--primary-glow);
+}
+
+/* Transisi muter panah 0.3 detik */
+.nav-item-top.dropdown>a i {
+    transition: transform 0.3s ease;
+    display: inline-block;
+    /* Wajib biar bisa diputar */
+}
+
+/* Kalau class menu-buka aktif, panah muter 180 derajat ke atas */
+.nav-item-top.dropdown.menu-buka>a i {
+    transform: rotate(180deg);
+}
+
+/* --- MOBILE RESPONSIVE (BURGER MENU) --- */
+@media (max-width: 768px) {
+    .burger-icon {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background: var(--bg-color);
+        border-left: 1px solid var(--glass-border);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 80px;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 1000;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        padding: 0 30px;
+    }
+
+    /* Ubah dropdown jadi nyatu/kebuka di mobile */
+    .dropdown-content {
+        position: static !important;
+        /* Paksa nempel, jangan melayang */
+        transform: none !important;
+        background: transparent !important;
+        /* Buang kotak abu-abunya */
+        border: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+        padding: 10px 0 0 20px !important;
+        /* Geser ke kanan dikit biar keliatan ini sub-menu */
+        margin: 0 !important;
+        width: 100% !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: none;
+        /* Sembunyiin bawaannya */
+    }
+
+    /* Munculin ke bawah pas menu utamanya disentuh */
+    .nav-item-top.dropdown.menu-buka .dropdown-content {
+        display: block !important;
+    }
+
+    /* Bikin jarak antar sub-menu lega biar gampang dipencet jempol */
+    .dropdown-content li {
+        margin-bottom: 15px;
+    }
+
+    .dropdown-content li a {
+        padding: 0 !important;
+        font-size: 0.95rem !important;
+        color: var(--text-main) !important;
+        opacity: 0.8;
+        /* Agak redup dikit biar beda sama menu utamanya */
+    }
+}
+
+/* =========================================
+   TAMBAHAN KHUSUS UI LOVE QUIZ
+   ========================================= */
+
+/* Efek pas tombol kuis dikunci (disabled) setelah dijawab */
+.quiz-opt:disabled {
+    opacity: 0.85;
+    cursor: not-allowed !important;
+    transform: scale(0.98);
+    box-shadow: none;
+}
+
+/* Biar teks feedback Bener/Salah lebih pop-out */
+#quiz-feedback {
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px 10px;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 80%;
+}
+
+/* Modif Modal khusus buat kuis biar lebih lega */
+.modal-content h3 {
+    line-height: 1.4;
+}

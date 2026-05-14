@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruang Etin | Mpit</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="particles-bg"></div>
+    <div class="top-bar">
+      <div class="logo">Ruang Etin</div>
+      <div class="burger-icon" onclick="toggleMobileMenu()">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li class="nav-item-top">
+            <a
+              href="#"
+              onclick="
+                switchTab('home');
+                closeMobileMenu();
+              ">Home</a>
+          </li>
+
+          <li class="nav-item-top dropdown">
+            <a href="#" onclick="event.preventDefault(); togglePanah(this)">
+              Safe Space
+              <i class="fa-solid fa-chevron-down" style="font-size: 0.8em"></i>
+            </a>
+            <ul class="dropdown-content">
+              <li><a href="#"
+                  onclick="bukaFitur('calm', 'card-napas')">Napas</a></li>
+              <li><a href="#" onclick="bukaFitur('calm', 'card-bubble')">Bubble
+                  Wrap</a></li>
+              <li><a href="#" onclick="bukaFitur('calm', 'card-scratch')">Love
+                  Scratch</a></li>
+              <li><a href="#"
+                  onclick="bukaFitur('calm', 'card-doodle')">Doodle</a></li>
+              <li><a href="#" onclick="bukaFitur('calm', 'card-burner')">Worry
+                  Burner</a></li>
+              <li><a href="#" onclick="bukaFitur('calm', 'card-booster')">Mood
+                  Booster</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item-top dropdown">
+            <a href="#" onclick="event.preventDefault(); togglePanah(this)">
+              Games
+              <i class="fa-solid fa-chevron-down" style="font-size: 0.8em"></i>
+            </a>
+            <ul class="dropdown-content">
+              <li><a href="#"
+                  onclick="bukaFitur('games', 'card-game-quiz')">Love
+                  Quiz</a></li>
+              <li><a href="#"
+                  onclick="bukaFitur('games', 'card-game-memory')">Memory
+                  Match</a></li>
+              <li><a href="#"
+                  onclick="bukaFitur('games', 'card-game-tictactoe')">Tic-Tac-Love</a></li>
+              <li><a href="#"
+                  onclick="bukaFitur('games', 'card-game-catch')">Catch
+                  Heart</a></li>
+              <li><a href="#"
+                  onclick="bukaFitur('games', 'card-game-puzzle')">Puzzle
+                  Cinta</a></li>
+              <li><a href="#"
+                  onclick="bukaFitur('games', 'card-game-binary')">Binary
+                  Decryptor</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <button id="theme-toggle">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
+      </button>
+    </div>
+
+    <main class="app-container">
+      <section id="home" class="tab-content active">
+        <div class="header-text">
+          <h1>Halo, Kesayangan ❤️</h1>
+          <p>
+            Mpit bikin ini khusus buat Etin. Biar Sayang selalu punya tempat
+            buat tenang.
+          </p>
+        </div>
+        <div class="grid-layout">
+          <div class="card p3k-card">
+            <div class="p3k-icon">🩹</div>
+            <h3>Pertolongan Pertama</h3>
+            <p>
+              Gelisah atau overthinking? Buka menu
+              <b> Safe Space </b> , atau panggil Mpit.
+            </p>
+            <button
+              class="btn-primary"
+              onclick="window.location.href = 'https://wa.me/6281410266561'">
+              <i class="fa-solid fa-phone"></i>
+              Hubungin Mpit
+            </button>
+          </div>
+          <div class="card quote-card">
+            <h3>Pesan Buat Sayang 💌</h3>
+            <div class="quote-container">
+              <p id="daily-message" class="fade-text show">
+                "Sayang berharga banget bagi Mpit. Jangan pernah ngerasa
+                sendirian ya."
+              </p>
+            </div>
+            <button onclick="newQuote()" class="btn-outline">
+              Baca Pesan Lain
+            </button>
+          </div>
+          <div class="card mood-card">
+            <h3>Gimana Perasaan Sayang? 💭</h3>
+            <p>Mpit pengen tau, hari ini Etin ngerasa gimana?</p>
+            <div class="mood-btns">
+              <button onclick="checkMood('senang')">🥰 Senang</button>
+              <button onclick="checkMood('sedih')">🥺 Sedih</button>
+              <button onclick="checkMood('takut')">😰 Takut</button>
+            </div>
+            <p
+              id="mood-response"
+              class="fade-text"
+              style="margin-top: 10px; font-weight: 600; color: var(--primary)"></p>
+          </div>
+          <div class="card music-card">
+            <h3>Your Playlist 🎵</h3>
+            <div class="music-player-main">
+              <i class="fa-solid fa-compact-disc spin-disk" id="disk-icon"></i>
+              <div class="music-info">
+                <h4 id="current-title">Understand</h4>
+                <p id="current-artist">Keshi</p>
+              </div>
+              <button class="play-btn" onclick="toggleMusic()">
+                <i class="fa-solid fa-play" id="play-icon"></i>
+              </button>
+            </div>
+            <div class="progress-container-music">
+              <input
+                type="range"
+                id="music-progress"
+                value="0"
+                step="1"
+                min="0"
+                max="100" />
+              <div class="time-info">
+                <span id="time-current">0:00</span>
+                <span id="time-total">0:00</span>
+              </div>
+            </div>
+            <div class="playlist-container">
+              <div class="playlist-item active" onclick="changeSong(0)">
+                <span>1. Understand - Keshi</span>
+              </div>
+              <div class="playlist-item" onclick="changeSong(1)">
+                <span>2. Open Arms - SZA</span>
+              </div>
+              <div class="playlist-item" onclick="changeSong(2)">
+                <span>3. Saturn - SZA</span>
+              </div>
+              <div class="playlist-item" onclick="changeSong(3)">
+                <span>4. Cinnamon Girl - Lana</span>
+              </div>
+              <div class="playlist-item" onclick="changeSong(4)">
+                <span>5. Wildflower - Billie</span>
+              </div>
+            </div>
+            <audio id="bg-music">
+              <source src="music/understand.mp3" type="audio/mpeg" />
+            </audio>
+          </div>
+        </div>
+      </section>
+
+      <section id="calm" class="tab-content">
+        <div class="header-text">
+          <h2>Safe Space 🌬️</h2>
+          <p>Fokus ke sini, kita atur napasnya bareng-bareng ya.</p>
+        </div>
+        <div class="grid-layout">
+          <div class="card interactive-breathe sub-fitur" id="card-napas">
+            <div class="clean-orb-container">
+              <div class="orb-aura" id="aura"></div>
+              <div class="orb-core" id="circle"></div>
+            </div>
+            <div class="breathe-text-area">
+              <h3 id="breathe-status">Tarik Napas Pelan</h3>
+              <p>Tekan & Tahan Layar</p>
+            </div>
+          </div>
+
+          <div class="card popper-card sub-fitur" id="card-bubble">
+            <h3>Pecahin Gelisahnya 🫧</h3>
+            <p>Pencet bubble wrap-nya buat rilis stres.</p>
+            <div class="bubble-grid" id="bubble-container"></div>
+            <button
+              class="btn-outline"
+              onclick="resetBubbles()"
+              style="width: 100%; margin-top: 20px">
+              Reset Bubble
+            </button>
+          </div>
+
+          <div class="card scratch-card sub-fitur" id="card-scratch">
+            <div class="p3k-icon">🎁</div>
+            <h3>Surprise Note buat Sayang ✨</h3>
+            <p>Gosok kotak di bawah buat liat pesan rahasia dari Mpit...</p>
+            <div class="scratch-container">
+              <div class="scratch-message" id="scratch-text">
+                Sayang hebat banget hari ini, Etin! ❤️
+              </div>
+              <canvas id="scratch-canvas"></canvas>
+            </div>
+            <button
+              class="btn-outline"
+              onclick="initScratch()"
+              style="margin-top: 15px">
+              Ganti Pesan Baru
+            </button>
+          </div>
+
+          <div class="card doodle-card sub-fitur" id="card-doodle">
+            <div class="p3k-icon">🎨</div>
+            <h3>Love Doodle buat Mpit ✏️</h3>
+            <p>
+              Gila ya hari ini? Tumpahin di sini, gambar apa aja suka-suka
+              Etin.
+            </p>
+            <div class="canvas-wrapper">
+              <canvas id="doodle-canvas"></canvas>
+            </div>
+            <div class="doodle-toolbar">
+              <div class="tool-group">
+                <button class="tool-btn" onclick="undoLast()" title="Undo">
+                  <i class="fa-solid fa-rotate-left"></i>
+                </button>
+                <button
+                  class="tool-btn"
+                  id="eraser-btn"
+                  onclick="toggleEraser(this)"
+                  title="Penghapus Manual">
+                  <i class="fa-solid fa-eraser"></i>
+                </button>
+                <button
+                  class="tool-btn"
+                  onclick="clearCanvas()"
+                  title="Hapus Semua">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+                <button
+                  class="tool-btn"
+                  onclick="triggerPhotoUpload()"
+                  title="Unggah Foto buat Dicoret">
+                  <i class="fa-solid fa-image"></i>
+                </button>
+                <button
+                  class="tool-btn"
+                  id="resize-doodle-btn"
+                  onclick="toggleMaximizeDoodle()"
+                  title="Perbesar Canvas">
+                  <i class="fa-solid fa-expand"></i>
+                </button>
+                <input
+                  type="file"
+                  id="photo-upload"
+                  accept="image/*"
+                  style="display: none"
+                  onchange="handlePhotoUpload(this)" />
+              </div>
+              <div class="color-scroll-container">
+                <div class="color-palette-v2">
+                  <button class="color-btn active" style="background: #000000"
+                    onclick="setColor('#000000', this)"></button>
+                  <button class="color-btn" style="background: #ff80ab"
+                    onclick="setColor('#ff80ab', this)"></button>
+                  <button class="color-btn" style="background: #e74c3c"
+                    onclick="setColor('#e74c3c', this)"></button>
+                  <button class="color-btn" style="background: #f1c40f"
+                    onclick="setColor('#f1c40f', this)"></button>
+                  <button class="color-btn" style="background: #2ecc71"
+                    onclick="setColor('#2ecc71', this)"></button>
+                  <button class="color-btn" style="background: #3498db"
+                    onclick="setColor('#3498db', this)"></button>
+                  <button class="color-btn" style="background: #9b59b6"
+                    onclick="setColor('#9b59b6', this)"></button>
+                  <button class="color-btn"
+                    style="background: #ffffff; border: 1px solid #ddd"
+                    onclick="setColor('#ffffff', this)"></button>
+                  <button class="color-btn" style="background: #e67e22"
+                    onclick="setColor('#e67e22', this)"></button>
+                  <button class="color-btn" style="background: #1abc9c"
+                    onclick="setColor('#1abc9c', this)"></button>
+                </div>
+              </div>
+            </div>
+            <div class="doodle-actions">
+              <button class="btn-outline" onclick="saveDoodle()">
+                <i class="fa-solid fa-download"></i>
+                Simpan
+              </button>
+              <button class="btn-primary" onclick="shareDoodle()">
+                <i class="fa-solid fa-whatsapp"></i>
+                Kirim ke Mpit
+              </button>
+            </div>
+          </div>
+
+          <div class="card burner-card sub-fitur" id="card-burner">
+            <div class="p3k-icon">🔥</div>
+            <h3>Worry Burner 焚</h3>
+            <p>Tulis stresmu, terus bakar biar ilang.</p>
+
+            <!-- Tambahin baris ini di bawah p -->
+            <div id="burner-feedback" class="fade-text"
+              style="color: #e74c3c; font-weight: 600; margin-bottom: 10px; min-height: 20px;"></div>
+
+            <textarea id="worry-input"
+              placeholder="Tulis beban pikiranmu..."></textarea>
+            <button class="btn-primary" onclick="burnWorry()"
+              style="background: #e74c3c">
+              Bakar!
+            </button>
+          </div>
+
+          <div class="card compliment-card sub-fitur" id="card-booster">
+            <div class="p3k-icon">✨</div>
+            <h3>Mood Booster 🪄</h3>
+            <p>Klik buat dapet hujan cinta dari Mpit.</p>
+            <button class="btn-primary" onclick="rainCompliments()">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              Klik Buat Senyum
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="games" class="tab-content">
+        <div class="header-text">
+          <h2>Love Zone 🥰</h2>
+          <p>Mini games manis buat senyumin hari Sayang.</p>
+        </div>
+        <div class="grid-layout">
+          <div class="card game-card sub-fitur" id="card-game-quiz"
+            onclick="openGame('quiz')">
+            <div class="game-icon">📝</div>
+            <div class="game-info">
+              <h3>Love Quiz</h3>
+              <p>Seberapa kenal Sayang sama Mpit?</p>
+            </div>
+          </div>
+          <div class="card game-card sub-fitur" id="card-game-memory"
+            onclick="openGame('memory')">
+            <div class="game-icon">🧩</div>
+            <div class="game-info">
+              <h3>Memory Match</h3>
+              <p>Cocokin kepingan hati kita.</p>
+            </div>
+          </div>
+          <div class="card game-card sub-fitur" id="card-game-tictactoe"
+            onclick="openGame('tictactoe')">
+            <div class="game-icon">❌</div>
+            <div class="game-info">
+              <h3>Tic-Tac-Love</h3>
+              <p>Main lawan Mpit (AI), siapa menang?</p>
+            </div>
+          </div>
+          <div class="card game-card sub-fitur" id="card-game-catch"
+            onclick="openGame('catch')">
+            <div class="game-icon">🧺</div>
+            <div class="game-info">
+              <h3>Catch The Love</h3>
+              <p>Tangkap hati sebanyak mungkin!</p>
+            </div>
+          </div>
+          <div class="card game-card sub-fitur" id="card-game-puzzle"
+            onclick="openGame('puzzle')">
+            <div class="game-icon">🧩</div>
+            <div class="game-info">
+              <h3>Puzzle Cinta</h3>
+              <p>Susun foto kita sampe jadi utuh lagi.</p>
+            </div>
+            <!-- Tambahin input ini Bang -->
+            <input type="file" id="puzzle-upload" accept="image/*"
+              style="display:none" onchange="handlePuzzleUpload(this)">
+          </div>
+          <div class="card game-card sub-fitur" id="card-game-binary"
+            onclick="openGame('binary')">
+            <div class="game-icon">👾</div>
+            <div class="game-info">
+              <h3>Binary Decryptor</h3>
+              <p>Pecahin kode rahasia Mpit pake logika biner.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="game-modal" class="modal">
+      <div class="modal-content card">
+        <span class="close-btn" onclick="closeGame()">&times;</span>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
